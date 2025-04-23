@@ -29,9 +29,22 @@
 		8FF50FB42DB77DFC007F2C19 /* SwiftyBooksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyBooksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8F34FB0E2DB7BDFC00583BBF /* Exceptions for "App" folder in "SwiftyBooks" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Theme,
+			);
+			target = 8FF50F9C2DB77DFB007F2C19 /* SwiftyBooks */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8FF50F9F2DB77DFB007F2C19 /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8F34FB0E2DB7BDFC00583BBF /* Exceptions for "App" folder in "SwiftyBooks" target */,
+			);
 			path = App;
 			sourceTree = "<group>";
 		};
