@@ -15,7 +15,14 @@ public extension Color {
     public static let primary = Color(.neutralPrimary)
   }
 
+  enum Semantic {
+    public static let info = Color(.info)
+    public static let negative = Color(.negative)
+    public static let positive = Color(.positive)
+  }
+
   enum Text {
+    public static let button = Color(.textButton)
     public static let primary = Color(.textPrimary)
     public static let secondary = Color(.textSecondary)
   }

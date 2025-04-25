@@ -8,7 +8,6 @@ public struct LibraryFeature {
 
   @ObservableState
   public struct State: Equatable {
-
     public init() {}
   }
 

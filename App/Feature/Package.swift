@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "Core",
+  name: "Feature",
   platforms: [
     .iOS(
       .v17
@@ -12,27 +12,29 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "Library",
-      targets: ["Library"]
+      name: "VolumeCard",
+      targets: ["VolumeCard"]
     ),
   ],
   dependencies: [
     .package(path: "../Domain"),
+    .package(path: "../Shared"),
     .package(path: "../Theme"),
     .package(url: "https://github.com/pointfreeco/swift-composable-architecture", .upToNextMajor(from: "1.19.1"))
   ],
   targets: [
     .target(
-      name: "Library",
+      name: "VolumeCard",
       dependencies: [
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         .product(name: "Domain", package: "Domain"),
+        .product(name: "Extensions", package: "Shared"),
         .product(name: "Theme", package: "Theme"),
-      ],
+      ]
     ),
     .testTarget(
-      name: "LibraryTests",
-      dependencies: ["Library"]
+      name: "VolumeCardTests",
+      dependencies: ["VolumeCard"]
     ),
   ]
 )
