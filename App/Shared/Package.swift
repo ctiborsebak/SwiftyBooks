@@ -4,21 +4,20 @@
 import PackageDescription
 
 let package = Package(
-  name: "Theme",
-  platforms: [
-    .iOS(
-      .v17
-    )
-  ],
+  name: "Shared",
   products: [
     .library(
-      name: "Theme",
-      targets: ["Theme"]
+      name: "Extensions",
+      targets: ["Extensions"]
     ),
   ],
   targets: [
     .target(
-      name: "Theme"
+      name: "Extensions"
+    ),
+    .testTarget(
+      name: "ExtensionsTests",
+      dependencies: ["Extensions"]
     ),
   ]
 )

@@ -1,0 +1,45 @@
+{
+  "configurations" : [
+    {
+      "id" : "36369AE3-9AF8-4602-94DE-71CFE94385B3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:App\/Domain",
+        "identifier" : "DomainTests",
+        "name" : "DomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Shared",
+        "identifier" : "ExtensionsTests",
+        "name" : "ExtensionsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Feature",
+        "identifier" : "VolumeCardTests",
+        "name" : "VolumeCardTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Core",
+        "identifier" : "LibraryTests",
+        "name" : "LibraryTests"
+      }
+    }
+  ],
+  "version" : 1
+}
