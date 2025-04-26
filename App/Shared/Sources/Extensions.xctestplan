@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "189FE498-7935-4659-A748-B743E01F1680",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ExtensionsTests",
+        "name" : "ExtensionsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

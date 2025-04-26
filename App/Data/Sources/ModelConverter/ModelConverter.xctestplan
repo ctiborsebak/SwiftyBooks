@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "1901CB59-F16A-499E-9FA9-AD90783892B0",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ModelConverterTests",
+        "name" : "ModelConverterTests"
+      }
+    }
+  ],
+  "version" : 1
+}

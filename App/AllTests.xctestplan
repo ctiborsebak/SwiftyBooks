@@ -14,16 +14,9 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:App\/Shared",
-        "identifier" : "ExtensionsTests",
-        "name" : "ExtensionsTests"
-      }
-    },
-    {
-      "target" : {
         "containerPath" : "container:App\/Data",
-        "identifier" : "NetworkingTests",
-        "name" : "NetworkingTests"
+        "identifier" : "GoogleBooksClientTests",
+        "name" : "GoogleBooksClientTests"
       }
     },
     {
@@ -31,6 +24,13 @@
         "containerPath" : "container:App\/Feature",
         "identifier" : "VolumeCardTests",
         "name" : "VolumeCardTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Data",
+        "identifier" : "NetworkingTests",
+        "name" : "NetworkingTests"
       }
     },
     {
@@ -45,6 +45,20 @@
         "containerPath" : "container:App\/Domain",
         "identifier" : "DomainTests",
         "name" : "DomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Shared",
+        "identifier" : "ExtensionsTests",
+        "name" : "ExtensionsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Data",
+        "identifier" : "ModelConverterTests",
+        "name" : "ModelConverterTests"
       }
     }
   ],
