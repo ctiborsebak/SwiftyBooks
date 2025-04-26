@@ -1,26 +1,58 @@
-import Dependencies
 import Foundation
 
-public struct RequestBuilderClient: Sendable {
-  var buildRequestWithBaseURL: @Sendable (String) throws -> URLRequest
-  var withPath: @Sendable (URLRequest, String) throws -> URLRequest
-  var withMethod: @Sendable (URLRequest, HTTPMethod) -> URLRequest
-  var withQueryItems: @Sendable (URLRequest, [URLQueryItem]) throws -> URLRequest
+public protocol RequestBuilderClientProtocol: Sendable {
+  func buildRequestWithBaseURL(_ baseURL: String) throws -> URLRequest
+  func withPath(_ request: URLRequest, _ path: String) throws -> URLRequest
+  func withMethod(_ request: URLRequest, _ method: HTTPMethod) -> URLRequest
+  func withQueryItems(_ request: URLRequest, _ queryItems: [URLQueryItem]) throws -> URLRequest
 }
 
-// MARK: - Dependencies
+public struct LiveRequestBuilderClient: RequestBuilderClientProtocol {
+  public init() {}
 
-public extension DependencyValues {
-  var requestBuilderClient: RequestBuilderClient {
-    get { self[RequestBuilderClient.self] }
-    set { self[RequestBuilderClient.self] = newValue }
+  public func buildRequestWithBaseURL(_ baseURL: String) throws -> URLRequest {
+    guard let url = URL(string: baseURL) else {
+      throw NetworkError.invalidURL
+    }
+
+    return URLRequest(url: url)
   }
-}
 
-extension RequestBuilderClient: DependencyKey {
-  public static let liveValue: RequestBuilderClient = .live
-  public static let testValue: RequestBuilderClient = .mock()
-#if DEBUG
-  public static let previewValue: RequestBuilderClient = .dev
-#endif
+  public func withPath(_ request: URLRequest, _ path: String) throws -> URLRequest {
+    guard var url = request.url else {
+      throw NetworkError.invalidURL
+    }
+
+    url.appendPathComponent(path)
+
+    var updatedRequest = request
+    updatedRequest.url = url
+
+    return updatedRequest
+  }
+
+  public func withMethod(_ request: URLRequest, _ method: HTTPMethod) -> URLRequest {
+    var request = request
+    request.httpMethod = method.rawValue
+
+    return request
+  }
+
+  public func withQueryItems(_ request: URLRequest, _ queryItems: [URLQueryItem]) throws -> URLRequest {
+    guard
+      let url = request.url,
+      var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+      throw NetworkError.invalidURL
+    }
+
+    components.queryItems = queryItems
+
+    guard let newURL = components.url else {
+      throw NetworkError.invalidURL
+    }
+
+    var updatedRequest = request
+    updatedRequest.url = newURL
+    return updatedRequest
+  }
 }

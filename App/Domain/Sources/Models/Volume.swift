@@ -31,11 +31,12 @@ public struct Volume: Equatable, Identifiable, Sendable {
     self.price = price
   }
 
-  public enum Saleability: Sendable {
+  public enum Saleability: Equatable, Sendable {
     case preorder
     case forSale
     case notForSale
     case free
+    case unknown
   }
 
   public struct Price: Equatable, Sendable {

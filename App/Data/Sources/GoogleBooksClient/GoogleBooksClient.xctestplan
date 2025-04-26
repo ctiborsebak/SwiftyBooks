@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "908B809F-D965-43B0-A3A2-92C0B4FB4F04",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "GoogleBooksClientTests",
+        "name" : "GoogleBooksClientTests"
+      }
+    }
+  ],
+  "version" : 1
+}
