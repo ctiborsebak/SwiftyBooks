@@ -3,10 +3,11 @@ import Testing
 
 @testable import Networking
 
+@Suite
 struct RequestBuilderClientTests {
   @Test
   func sut_should_create_an_url_request() {
-    let sut = RequestBuilderClient.live
+    let sut = LiveRequestBuilderClient()
 
     let result = try? sut.buildRequestWithBaseURL("https://www.google.com")
 
@@ -15,7 +16,7 @@ struct RequestBuilderClientTests {
 
   @Test
   func sut_should_throw_an_error_when_url_is_invalid() {
-    let sut = RequestBuilderClient.live
+    let sut = LiveRequestBuilderClient()
 
     #expect(throws: NetworkError.invalidURL) {
       try sut.buildRequestWithBaseURL("")
@@ -24,7 +25,7 @@ struct RequestBuilderClientTests {
 
   @Test
   func sut_should_create_an_url_request_with_path() throws {
-    let sut = RequestBuilderClient.live
+    let sut = LiveRequestBuilderClient()
     let url = try #require(URL(string: "https://www.google.com"))
     let request = URLRequest(url: url)
 
@@ -35,7 +36,7 @@ struct RequestBuilderClientTests {
 
   @Test
   func sut_should_create_an_url_request_with_http_method() throws {
-    let sut = RequestBuilderClient.live
+    let sut = LiveRequestBuilderClient()
     let url = try #require(URL(string: "https://www.google.com"))
     let request = URLRequest(url: url)
 
@@ -46,7 +47,7 @@ struct RequestBuilderClientTests {
 
   @Test
   func sut_should_add_query_items_to_a_request() throws {
-    let sut = RequestBuilderClient.live
+    let sut = LiveRequestBuilderClient()
     let url = try #require(URL(string: "https://www.google.com"))
     let request = URLRequest(url: url)
 
@@ -62,7 +63,7 @@ struct RequestBuilderClientTests {
 
   @Test
   func sut_should_throw_when_request_url_is_nil_when_adding_query_irems() throws {
-    let sut = RequestBuilderClient.live
+    let sut = LiveRequestBuilderClient()
     var request = URLRequest(url: try #require(URL(string: "https://example.com")))
     request.url = nil
 

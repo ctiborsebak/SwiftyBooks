@@ -17,6 +17,8 @@ extension LoggerClient {
   )
 }
 
+// MARK: - Dependencies
+
 extension DependencyValues {
   var loggerClient: LoggerClient {
     get { self[LoggerClient.self] }
