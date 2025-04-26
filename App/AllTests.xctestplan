@@ -14,16 +14,16 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:App\/Domain",
-        "identifier" : "DomainTests",
-        "name" : "DomainTests"
+        "containerPath" : "container:App\/Shared",
+        "identifier" : "ExtensionsTests",
+        "name" : "ExtensionsTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:App\/Shared",
-        "identifier" : "ExtensionsTests",
-        "name" : "ExtensionsTests"
+        "containerPath" : "container:App\/Data",
+        "identifier" : "NetworkingTests",
+        "name" : "NetworkingTests"
       }
     },
     {
@@ -38,6 +38,13 @@
         "containerPath" : "container:App\/Core",
         "identifier" : "LibraryTests",
         "name" : "LibraryTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Domain",
+        "identifier" : "DomainTests",
+        "name" : "DomainTests"
       }
     }
   ],
