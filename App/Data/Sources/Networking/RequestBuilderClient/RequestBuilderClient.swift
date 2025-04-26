@@ -18,17 +18,9 @@ public extension DependencyValues {
 }
 
 extension RequestBuilderClient: DependencyKey {
-  public static var liveValue: RequestBuilderClient {
-    .live
-  }
-
-  public static var testValue: RequestBuilderClient {
-    .mock()
-  }
-
+  public static let liveValue: RequestBuilderClient = .live
+  public static let testValue: RequestBuilderClient = .mock()
 #if DEBUG
-  public static var previewValue: RequestBuilderClient {
-    .dev
-  }
+  public static let previewValue: RequestBuilderClient = .dev
 #endif
 }
