@@ -25,7 +25,7 @@ public extension VolumeCardFeature {
         VStack(alignment: .leading, spacing: .Spacing.XS) {
           HStack(alignment: .top) {
             Text(store.volume.authors.joined(separator:", "))
-              .lineLimit(3)
+              .lineLimit(1)
               .font(.system(.caption))
               .foregroundStyle(Color.Text.primary)
 
@@ -53,7 +53,7 @@ public extension VolumeCardFeature {
 
             VStack(alignment: .leading) {
               Text(store.volume.title)
-                .lineLimit(1)
+                .lineLimit(3)
                 .font(.system(.caption))
                 .foregroundStyle(Color.Text.primary)
 
@@ -68,6 +68,8 @@ public extension VolumeCardFeature {
               Spacer()
 
               HStack {
+                Spacer()
+
                 if let price = store.volume.price {
                   BadgeView(
                     caption: String(format: "%.2f %@", price.amount, price.currencyCode),

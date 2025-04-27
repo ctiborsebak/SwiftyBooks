@@ -17,7 +17,7 @@ extension VolumeConverter {
       return .init(
         id: response.id,
         title: response.volumeInfo.title,
-        authors: response.volumeInfo.authors,
+        authors: response.volumeInfo.authors ?? [],
         description: response.volumeInfo.description,
         thumbnailImageURLPath: response.volumeInfo.imageLinks?.thumbnail,
         isMatureContent: isMatureContent,

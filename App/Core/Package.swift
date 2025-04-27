@@ -17,7 +17,9 @@ let package = Package(
     ),
   ],
   dependencies: [
+    .package(path: "../Data"),
     .package(path: "../Domain"),
+    .package(path: "../Feature"),
     .package(path: "../Theme"),
     .package(url: "https://github.com/pointfreeco/swift-composable-architecture", .upToNextMajor(from: "1.19.1"))
   ],
@@ -27,7 +29,10 @@ let package = Package(
       dependencies: [
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         .product(name: "Domain", package: "Domain"),
+        .product(name: "GoogleBooksClient", package: "Data"),
+        .product(name: "Networking", package: "Data"),
         .product(name: "Theme", package: "Theme"),
+        .product(name: "VolumeCard", package: "Feature")
       ],
     ),
     .testTarget(

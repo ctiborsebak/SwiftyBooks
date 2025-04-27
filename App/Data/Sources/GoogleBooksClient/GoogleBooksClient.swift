@@ -5,13 +5,13 @@ import ModelConverter
 import Networking
 
 public struct GoogleBooksClient: Sendable {
-  var search: @Sendable (String, Int) async throws -> Volumes
+  public var search: @Sendable (String, Int) async -> Result<Volumes, NetworkError>
 }
 
 // MARK: - Dependencies
 
 public extension DependencyValues {
-  var googleVBClient: GoogleBooksClient {
+  var googleBooksClient: GoogleBooksClient {
     get { self[GoogleBooksClient.self] }
     set { self[GoogleBooksClient.self] = newValue }
   }
@@ -29,4 +29,6 @@ extension GoogleBooksClient: DependencyKey {
       )
     )
   )
+
+  public static let testValue: GoogleBooksClient = .mock()
 }

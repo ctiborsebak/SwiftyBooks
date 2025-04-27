@@ -23,7 +23,7 @@ struct VolumesConverterTests {
     let volumesConverter = VolumesConverter.live(volumeConverter: volumeConverter)
 
     let response = VolumesResponse(
-      totalitems: 3,
+      totalItems: 3,
       items: .init(
         repeating: VolumeResponse(
           id: "volume1",
