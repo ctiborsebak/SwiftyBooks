@@ -12,7 +12,7 @@ extension VolumesConverter {
 
       return .init(
         volumes: volumes,
-        totalItems: response.totalitems
+        totalItems: response.totalItems
       )
     }
   }

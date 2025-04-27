@@ -8,7 +8,11 @@ public struct VolumeCardFeature {
   // MARK: - State
 
   @ObservableState
-  public struct State: Equatable {
+  public struct State: Equatable, Identifiable {
+    public var id: String {
+      volume.id
+    }
+
     let volume: Volume
 
     public init(volume: Volume) {

@@ -35,6 +35,8 @@ extension Volume.Saleability {
       "Not for sale"
     case .free:
       "Free"
+    case .unknown:
+      ""
     }
   }
 
@@ -48,6 +50,8 @@ extension Volume.Saleability {
         .Semantic.positive
     case .notForSale:
         .Semantic.negative
+    case .unknown:
+        .clear
     }
   }
 }

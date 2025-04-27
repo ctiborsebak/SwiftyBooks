@@ -10,11 +10,12 @@ import Testing
 struct GoogleBooksClientTests {
   @Test
   func sut_fetches_google_books_volumes() async throws {
+    var failed = false
     let dummyRequest = URLRequest(url: URL(string: "https://example.com")!)
     let requestBuilder = StubRequestBuilderClient(urlRequest: dummyRequest, error: nil)
-
+    
     let volumesResponse = VolumesResponse(
-      totalitems: 1,
+      totalItems: 1,
       items: [
         VolumeResponse(
           id: "123",
@@ -33,9 +34,9 @@ struct GoogleBooksClientTests {
         )
       ]
     )
-
+    
     let urlSessionClient = StubURLSessionClient(mockObject: volumesResponse)
-
+    
     let client = GoogleBooksClient.live(
       requestBuilder: requestBuilder,
       urlSessionClient: urlSessionClient,
@@ -60,52 +61,62 @@ struct GoogleBooksClientTests {
         }
       )
     )
-
-    let volumes = try await client.search("Swift", 0)
-
-    #expect(volumes.totalItems == 1)
-    #expect(volumes.volumes.count == 1)
-    #expect(volumes.volumes.first?.title == "Swift Programming")
-    #expect(volumes.volumes.first?.isMatureContent == false)
+    
+    let result = await client.search("Swift", 0)
+    
+    switch result {
+    case let .success(volumes):
+      #expect(volumes.totalItems == 1)
+      #expect(volumes.volumes.count == 1)
+      #expect(volumes.volumes.first?.title == "Swift Programming")
+      #expect(volumes.volumes.first?.isMatureContent == false)
+    case .failure:
+      failed = true
+    }
+    #expect(!failed)
   }
-
+  
   @Test
   func sut_throws_error_when_request_builder_fails() async throws {
     let requestBuilder = StubRequestBuilderClient(urlRequest: nil, error: .requestFailed)
-
+    
     let urlSessionClient = StubURLSessionClient<VolumesResponse>(mockObject: nil)
-
+    
     let client = GoogleBooksClient.live(
       requestBuilder: requestBuilder,
       urlSessionClient: urlSessionClient,
-      volumesConverter: .init(toDomain: { _ in
-          .init(volumes: [], totalItems: 0)
-      })
+      volumesConverter: .init(
+        toDomain: { _ in
+            .init(volumes: [], totalItems: 0)
+        }
+      )
     )
-
-    await #expect(throws: NetworkError.requestFailed) {
-      try await client.search("Swift", 0)
-    }
+    
+    let result = await client.search("Swift", 0)
+    
+    #expect(result == .failure(.requestFailed))
   }
-
+  
   @Test
   func sut_throws_error_when_url_session_client_fails() async throws {
     let dummyRequest = URLRequest(url: URL(string: "https://example.com")!)
     let requestBuilder = StubRequestBuilderClient(urlRequest: dummyRequest, error: nil)
-
-    let stubError = NSError(domain: "TestDomain", code: 1)
+    
+    let stubError = NetworkError.requestFailed
     let urlSessionClient = StubURLSessionClient<VolumesResponse>(mockObject: nil, mockError: stubError)
-
+    
     let client = GoogleBooksClient.live(
       requestBuilder: requestBuilder,
       urlSessionClient: urlSessionClient,
-      volumesConverter: .init(toDomain: { _ in
-          .init(volumes: [], totalItems: 0)
-      })
+      volumesConverter: .init(
+        toDomain: { _ in
+            .init(volumes: [], totalItems: 0)
+        }
+      )
     )
-
-    await #expect(throws: stubError) {
-      try await client.search("Swift", 0)
-    }
+    
+    let result = await client.search("Swift", 0)
+    
+    #expect(result == .failure(.requestFailed))
   }
 }

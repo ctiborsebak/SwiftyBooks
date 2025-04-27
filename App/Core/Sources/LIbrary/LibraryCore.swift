@@ -1,4 +1,9 @@
 import ComposableArchitecture
+import Domain
+import GoogleBooksClient
+import IdentifiedCollections
+import Networking
+import VolumeCard
 
 @Reducer
 public struct LibraryFeature {
@@ -8,6 +13,15 @@ public struct LibraryFeature {
 
   @ObservableState
   public struct State: Equatable {
+    var searchText: String = ""
+    var shownItemsCount: Int = 0
+    var isShowingError: Bool = false
+    var isActivityIndicatorHidden: Bool = true
+    var isShowingStartMessage: Bool = true
+    var noItemsFound: Bool = false
+
+    var volumeCards: IdentifiedArrayOf<VolumeCardFeature.State> = []
+
     public init() {}
   }
 
@@ -16,16 +30,123 @@ public struct LibraryFeature {
   @CasePathable
   public enum Action: ViewAction {
     case view(View)
+    case debouncedTextChanged(String)
+    case volumesResultChanged(Result<Volumes, NetworkError>)
+
+    case volumeCard(IdentifiedActionOf<VolumeCardFeature>)
 
     @CasePathable
     public enum View {
-
+      case searchTextChanged(String)
+      case paginationLoading
+      case retryTapped
     }
   }
 
   // MARK: - Reducer
 
+  enum CancelID {
+    case debounce
+  }
+
   public var body: some ReducerOf<Self> {
-    EmptyReducer()
+    Reduce { state, action in
+      switch action {
+      case let .view(viewAction):
+        return reduce(into: &state, viewAction: viewAction)
+        
+      case let .debouncedTextChanged(searchQuery):
+        return fetchBooks(searchQuery: searchQuery, state: &state)
+
+      case let .volumesResultChanged(volumesResult):
+        switch volumesResult {
+        case let .success(volumes):
+          guard !volumes.volumes.isEmpty else {
+            state.noItemsFound = true
+            state.isActivityIndicatorHidden = true
+            return .none
+          }
+
+          state.volumeCards.append(
+            contentsOf: IdentifiedArray(
+              uniqueElements: volumes.volumes.map(VolumeCardFeature.State.init)
+            )
+          )
+          state.shownItemsCount += volumes.volumes.count
+          state.isActivityIndicatorHidden = state.shownItemsCount >= volumes.totalItems
+          state.isShowingError = false
+
+        case .failure:
+          if state.shownItemsCount == 0 {
+            state.isShowingError = true
+            state.isActivityIndicatorHidden = true
+          }
+        }
+
+        return .none
+
+      case .volumeCard:
+        return .none
+      }
+    }
+    .forEach(\.volumeCards, action: \.volumeCard) {
+      VolumeCardFeature()
+    }
+  }
+}
+
+private extension LibraryFeature {
+  func reduce(into state: inout State, viewAction: Action.ViewAction) -> Effect<Action> {
+    switch viewAction {
+    case let .searchTextChanged(searchQuery):
+      guard searchQuery != state.searchText else {
+        return .none
+      }
+      
+      resetForNewSearch(state: &state)
+      state.searchText = searchQuery
+
+      guard !searchQuery.isEmpty else {
+        state.isShowingStartMessage = true
+        state.isActivityIndicatorHidden = true
+        return .none
+      }
+
+      return .run { send in
+        @Dependency(\.continuousClock) var continuousClock
+
+        try await continuousClock.sleep(for: .seconds(1))
+        await send(.debouncedTextChanged(searchQuery))
+      }
+      .cancellable(id: CancelID.debounce, cancelInFlight: true)
+
+    case .paginationLoading:
+      return fetchBooks(searchQuery: state.searchText, state: &state)
+
+    case .retryTapped:
+      state.isShowingError = false
+      state.isActivityIndicatorHidden = false
+      return fetchBooks(searchQuery: state.searchText, state: &state)
+    }
+  }
+
+  func fetchBooks(searchQuery: String, state: inout State) -> EffectOf<Self> {
+    return .run(priority: .background) { [currentIndex = state.shownItemsCount] send in
+      @Dependency(\.googleBooksClient) var googleBooksClient
+
+      let lastItemIndex = currentIndex > 0 ? currentIndex - 1 : 0
+
+      let volumes = await googleBooksClient.search(searchQuery, lastItemIndex)
+      await send(.volumesResultChanged(volumes))
+    }
+  }
+
+  func resetForNewSearch(state: inout State) {
+    state.isShowingStartMessage = false
+    state.isActivityIndicatorHidden = false
+    state.volumeCards = []
+    state.shownItemsCount = 0
+    state.isShowingError = false
+    state.noItemsFound = false
   }
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 struct VolumesResponse: Equatable, Decodable {
-  let totalitems: Int
+  let totalItems: Int
   let items: [VolumeResponse]
 }
 
@@ -13,7 +13,7 @@ struct VolumeResponse: Equatable, Decodable {
 
 struct VolumeInfoResponse: Equatable, Decodable {
   let title: String
-  let authors: [String]
+  let authors: [String]?
   let publishedDate: String?
   let description: String?
   let imageLinks: ImageLinkResponse?

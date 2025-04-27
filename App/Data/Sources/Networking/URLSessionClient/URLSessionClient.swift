@@ -1,3 +1,4 @@
+import Dependencies
 import Foundation
 
 public protocol URLSessionClientProtocol: Sendable {
@@ -21,9 +22,12 @@ public struct LiveURLSessionClient: URLSessionClientProtocol {
     do {
       decodedObject =  try JSONDecoder().decode(T.self, from: data)
     } catch {
+      @Dependency(\.loggerClient) var loggerClient
+      loggerClient.log("‼️ \(error)")
       throw NetworkError.decodingFailed
     }
 
     return decodedObject
   }
 }
+
