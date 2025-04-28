@@ -37,8 +37,6 @@ public struct ActivityIndicator: View {
   }
 }
 
-
-
 #if DEBUG
 #Preview {
   ActivityIndicator()

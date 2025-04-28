@@ -1,6 +1,6 @@
 import ComposableArchitecture
 import Domain
-import Extensions
+import Shared
 import SwiftUI
 import Theme
 
@@ -52,15 +52,17 @@ public extension VolumeCardFeature {
             }
 
             VStack(alignment: .leading) {
-              Text(store.volume.title)
-                .lineLimit(3)
-                .font(.system(.caption))
-                .foregroundStyle(Color.Text.primary)
+              if let title = store.volume.title {
+                Text(title)
+                  .lineLimit(3)
+                  .font(.system(.caption))
+                  .foregroundStyle(Color.Text.primary)
+              }
 
               if let description = store.volume.description {
                 Text(description)
                   .multilineTextAlignment(.leading)
-                  .font(.caption2) 
+                  .font(.caption2)
                   .foregroundStyle(Color.Text.secondary)
                   .padding(.top, .Spacing.XXXS)
               }
@@ -83,7 +85,6 @@ public extension VolumeCardFeature {
 
                 if let saleability = store.volume.saleability {
                   SaleabilityBadgeView(saleability: saleability)
-
                 }
               }
               .padding(.top, .Spacing.XXXS)
@@ -97,6 +98,7 @@ public extension VolumeCardFeature {
           Color.Background.card
             .cornerRadius(.CornerRadius.S)
         }
+        .navigationBarHidden(true)
       }
     }
   }
@@ -118,7 +120,8 @@ public extension VolumeCardFeature {
           isMatureContent: true,
           publishedYear: "2003",
           saleability: .preorder,
-          price: .init(amount: 146.55, currencyCode: "CZK")
+          price: .init(amount: 146.55, currencyCode: "CZK"),
+          buyLink: "https://play.google.com/store/books/details?id=tuLz4j8QMk8C&rdid=book-tuLz4j8QMk8C&rdot=1&source=gbs_api"
         )
       ),
       reducer: VolumeCardFeature.init
@@ -141,7 +144,8 @@ public extension VolumeCardFeature {
           isMatureContent: nil,
           publishedYear: nil,
           saleability: nil,
-          price: nil
+          price: nil,
+          buyLink: nil
         )
       ),
       reducer: VolumeCardFeature.init

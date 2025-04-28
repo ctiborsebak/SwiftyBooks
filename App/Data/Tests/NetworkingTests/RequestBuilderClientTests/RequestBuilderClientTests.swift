@@ -3,7 +3,6 @@ import Testing
 
 @testable import Networking
 
-@Suite
 struct RequestBuilderClientTests {
   @Test
   func sut_should_create_an_url_request() {

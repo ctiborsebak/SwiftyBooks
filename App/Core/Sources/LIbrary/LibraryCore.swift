@@ -3,7 +3,17 @@ import Domain
 import GoogleBooksClient
 import IdentifiedCollections
 import Networking
-import VolumeCard
+import Volume
+
+// MARK: - Destination
+
+extension LibraryFeature {
+  @Reducer
+  public enum Destination {
+    case detail(VolumeDetailFeature)
+  }
+}
+extension LibraryFeature.Destination.State: Equatable {}
 
 @Reducer
 public struct LibraryFeature {
@@ -13,6 +23,7 @@ public struct LibraryFeature {
 
   @ObservableState
   public struct State: Equatable {
+    @Presents var destination: Destination.State?
     var searchText: String = ""
     var shownItemsCount: Int = 0
     var isShowingError: Bool = false
@@ -30,6 +41,7 @@ public struct LibraryFeature {
   @CasePathable
   public enum Action: ViewAction {
     case view(View)
+    case destination(PresentationAction<Destination.Action>)
     case debouncedTextChanged(String)
     case volumesResultChanged(Result<Volumes, NetworkError>)
 
@@ -85,18 +97,29 @@ public struct LibraryFeature {
 
         return .none
 
-      case .volumeCard:
+      case let .volumeCard(.element(id, .delegate(.itemTapped))):
+        guard let volume = state.volumeCards.first(where: { $0.id == id } )?.volume else {
+          return .none
+        }
+
+        state.destination = .detail(.init(volume: volume))
+
+        return .none
+
+      case .volumeCard,
+          .destination:
         return .none
       }
     }
     .forEach(\.volumeCards, action: \.volumeCard) {
       VolumeCardFeature()
     }
+    .ifLet(\.$destination, action: \.destination)
   }
 }
 
 private extension LibraryFeature {
-  func reduce(into state: inout State, viewAction: Action.ViewAction) -> Effect<Action> {
+  func reduce(into state: inout State, viewAction: Action.ViewAction) -> EffectOf<Self> {
     switch viewAction {
     case let .searchTextChanged(searchQuery):
       guard searchQuery != state.searchText else {

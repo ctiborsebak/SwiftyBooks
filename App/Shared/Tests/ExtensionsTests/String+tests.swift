@@ -1,8 +1,7 @@
 import Testing
 
-@testable import Extensions
+@testable import Shared
 
-@Suite
 struct String_Tests {
   @Test
   func secure_url_tests() {

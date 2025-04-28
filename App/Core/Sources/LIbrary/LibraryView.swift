@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import SwiftUI
 import Theme
-import VolumeCard
+import Volume
 
 public extension LibraryFeature {
   @ViewAction(for: LibraryFeature.self)
@@ -93,12 +93,17 @@ public extension LibraryFeature {
         }
 
         if isSearching {
-          DismissKeyboardOverlayView {
-            isSearching = false
-          }
+          DismissKeyboardOverlayView { isSearching = false }
         }
       }
       .background(Color.Background.primary)
+      // NOTE: Navigation destination has to live in this feature, rather than the `VolumeCardFeature` (which would be a more appropriate place), because all the cards are embedded inside a list and using `.navigationDestination` on lazy views (such as `List`) is a bad practise and such navigation destinations will be ignored by the navigation stack in the future versions of Swift / Xcode
+      .navigationDestination(
+        item: $store.scope(state: \.destination?.detail,action: \.destination.detail)
+      ) {
+        store in
+        VolumeDetailFeature.MainView(store: store)
+      }
     }
   }
 }

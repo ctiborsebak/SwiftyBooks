@@ -3,7 +3,6 @@ import Testing
 
 @testable import GoogleBooksClient
 
-@Suite
 struct PriceConverterTests {
   @Test
   func sut_should_convert_domain_model() {

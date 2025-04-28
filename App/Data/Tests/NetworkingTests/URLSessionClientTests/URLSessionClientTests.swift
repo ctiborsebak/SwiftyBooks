@@ -3,7 +3,6 @@ import Testing
 
 @testable import Networking
 
-@Suite
 struct URLSessionClientTests {
   @Test
   func testFetchUserSuccessfully() async throws {

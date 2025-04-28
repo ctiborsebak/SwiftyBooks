@@ -23,7 +23,8 @@ extension VolumeConverter {
         isMatureContent: isMatureContent,
         publishedYear: response.volumeInfo.publishedDate,
         saleability: saleability,
-        price: price
+        price: price,
+        buyLink: response.saleInfo?.buyLink
       )
     }
   }

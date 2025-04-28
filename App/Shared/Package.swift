@@ -5,19 +5,32 @@ import PackageDescription
 
 let package = Package(
   name: "Shared",
+  platforms: [
+    .iOS(
+      .v17
+    )
+  ],
   products: [
     .library(
-      name: "Extensions",
-      targets: ["Extensions"]
+      name: "Shared",
+      targets: ["Shared"]
     ),
+  ],
+  dependencies: [
+    .package(path: "../Domain"),
   ],
   targets: [
     .target(
-      name: "Extensions"
+      name: "Shared",
+      dependencies: [
+        .product(name: "Domain", package: "Domain"),
+      ],
     ),
     .testTarget(
-      name: "ExtensionsTests",
-      dependencies: ["Extensions"]
-    ),
+      name: "SharedTests",
+      dependencies: [
+        "Shared"
+      ]
+    )
   ]
 )

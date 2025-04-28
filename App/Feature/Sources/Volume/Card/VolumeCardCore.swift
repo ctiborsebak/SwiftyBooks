@@ -13,7 +13,7 @@ public struct VolumeCardFeature {
       volume.id
     }
 
-    let volume: Volume
+    public var volume: Volume
 
     public init(volume: Volume) {
       self.volume = volume
@@ -25,9 +25,15 @@ public struct VolumeCardFeature {
   @CasePathable
   public enum Action: ViewAction {
     case view(View)
+    case delegate(Delegate)
 
     @CasePathable
     public enum View {
+      case itemTapped
+    }
+
+    @CasePathable
+    public enum Delegate {
       case itemTapped
     }
   }
@@ -39,18 +45,19 @@ public struct VolumeCardFeature {
       switch action {
       case let .view(viewAction):
         return reduce(into: &state, viewAction: viewAction)
+
+      case .delegate:
+        return .none
       }
     }
   }
 }
 
 private extension VolumeCardFeature {
-  func reduce(into state: inout State, viewAction: Action.ViewAction) -> Effect<Action> {
+  func reduce(into state: inout State, viewAction: Action.ViewAction) -> EffectOf<Self> {
     switch viewAction {
     case .itemTapped:
-      // TODO: Display book detail
-
-      return .none
+      return .send(.delegate(.itemTapped))
     }
   }
 }

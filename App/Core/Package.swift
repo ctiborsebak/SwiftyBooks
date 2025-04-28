@@ -32,7 +32,7 @@ let package = Package(
         .product(name: "GoogleBooksClient", package: "Data"),
         .product(name: "Networking", package: "Data"),
         .product(name: "Theme", package: "Theme"),
-        .product(name: "VolumeCard", package: "Feature")
+        .product(name: "Volume", package: "Feature")
       ],
     ),
     .testTarget(

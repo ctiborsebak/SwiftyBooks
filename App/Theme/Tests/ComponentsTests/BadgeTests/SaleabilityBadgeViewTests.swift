@@ -2,9 +2,8 @@ import Domain
 import SwiftUI
 import Testing
 
-@testable import VolumeCard
+@testable import Theme
 
-@Suite
 struct SaleabilityBadgeViewTests {
   @Test(
     arguments: zip(

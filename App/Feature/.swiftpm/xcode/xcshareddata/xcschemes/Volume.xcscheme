@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Extensions"
-               BuildableName = "Extensions"
-               BlueprintName = "Extensions"
+               BlueprintIdentifier = "Volume"
+               BuildableName = "Volume"
+               BlueprintName = "Volume"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:Sources/Extensions.xctestplan"
+            reference = "container:Sources/Volume/Volume.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
@@ -55,9 +55,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Extensions"
-            BuildableName = "Extensions"
-            BlueprintName = "Extensions"
+            BlueprintIdentifier = "Volume"
+            BuildableName = "Volume"
+            BlueprintName = "Volume"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

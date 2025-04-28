@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "1643AA91-6AAD-42DC-8703-E9D5EDB77EBF",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "VolumeTests",
+        "name" : "VolumeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "VolumeCard"
-               BuildableName = "VolumeCard"
-               BlueprintName = "VolumeCard"
+               BlueprintIdentifier = "Shared"
+               BuildableName = "Shared"
+               BlueprintName = "Shared"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:Sources/VolumeCard/VolumeCard.xctestplan"
+            reference = "container:Shared.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
@@ -55,9 +55,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "VolumeCard"
-            BuildableName = "VolumeCard"
-            BlueprintName = "VolumeCard"
+            BlueprintIdentifier = "Shared"
+            BuildableName = "Shared"
+            BlueprintName = "Shared"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

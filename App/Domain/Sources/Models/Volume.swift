@@ -1,6 +1,6 @@
 public struct Volume: Equatable, Identifiable, Sendable {
   public let id: String
-  public let title: String
+  public let title: String?
   public let authors: [String]
   public let description: String?
   public let thumbnailImageURLPath: String?
@@ -8,17 +8,19 @@ public struct Volume: Equatable, Identifiable, Sendable {
   public let publishedYear: String?
   public let saleability: Saleability?
   public let price: Price?
+  public let buyLink: String?
 
   public init(
     id: String,
-    title: String,
+    title: String?,
     authors: [String],
     description: String?,
     thumbnailImageURLPath: String?,
     isMatureContent: Bool?,
     publishedYear: String?,
     saleability: Saleability?,
-    price: Price?
+    price: Price?,
+    buyLink: String?
   ) {
     self.id = id
     self.title = title
@@ -29,6 +31,7 @@ public struct Volume: Equatable, Identifiable, Sendable {
     self.publishedYear = publishedYear
     self.saleability = saleability
     self.price = price
+    self.buyLink = buyLink
   }
 
   public enum Saleability: Equatable, Sendable {
