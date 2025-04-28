@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "63485D62-F8C5-474E-A6B2-8802558E3BB9",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ThemeTests",
+        "name" : "ThemeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

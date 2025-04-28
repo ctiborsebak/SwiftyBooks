@@ -1,11 +1,6 @@
 # SwiftyBooks
-A simple application that leverages google books public API to display available books for purchase. It serves as a demo application.
+A simple application that leverages Google Books public API to display available books for purchase. It serves as a demo application. The application archtiecture used is PointFree's The Composable Archtitecture.
 
-### Tech stack
-- Networking + `OAuth`
-- Swift Testing
-- Swift Concurrency
-- TCA (The composable architecture)
-
-### Build & Run
-No special prerequisites are needed to build this application. Just fire up Xcode and hit run.
+### Prerequisites
+- SwiftLint installed
+- Provisioning Profile if you'd like to build on a real device

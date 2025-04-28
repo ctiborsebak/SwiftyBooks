@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "4D8840D6-32DB-4BFE-968D-7DF8F6A71A98",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "SharedTests",
+        "name" : "SharedTests"
+      }
+    }
+  ],
+  "version" : 1
+}

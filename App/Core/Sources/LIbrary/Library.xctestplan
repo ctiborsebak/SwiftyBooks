@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "03DEFF63-D3F0-4A30-AB96-D77C19D55BB9",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "LibraryTests",
+        "name" : "LibraryTests"
+      }
+    }
+  ],
+  "version" : 1
+}

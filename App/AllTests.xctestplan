@@ -1,0 +1,73 @@
+{
+  "configurations" : [
+    {
+      "id" : "36369AE3-9AF8-4602-94DE-71CFE94385B3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:App\/Feature",
+        "identifier" : "VolumeTests",
+        "name" : "VolumeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Data",
+        "identifier" : "GoogleBooksClientTests",
+        "name" : "GoogleBooksClientTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Shared",
+        "identifier" : "SharedTests",
+        "name" : "SharedTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Theme",
+        "identifier" : "ThemeTests",
+        "name" : "ThemeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Data",
+        "identifier" : "ModelConverterTests",
+        "name" : "ModelConverterTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Data",
+        "identifier" : "NetworkingTests",
+        "name" : "NetworkingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Core",
+        "identifier" : "LibraryTests",
+        "name" : "LibraryTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:App\/Domain",
+        "identifier" : "DomainTests",
+        "name" : "DomainTests"
+      }
+    }
+  ],
+  "version" : 1
+}
