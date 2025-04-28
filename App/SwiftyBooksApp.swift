@@ -5,13 +5,14 @@ import SwiftUI
 struct SwiftyBooksApp: App {
   var body: some Scene {
     WindowGroup {
-      LibraryFeature.MainView(
-        store: .init(
-          initialState: LibraryFeature.State(),
-          reducer: LibraryFeature.init
+      NavigationStack {
+        LibraryFeature.MainView(
+          store: .init(
+            initialState: LibraryFeature.State(),
+            reducer: LibraryFeature.init
+          )
         )
-      )
-      .navigationViewStyle(.stack)
+      }
     }
   }
 }

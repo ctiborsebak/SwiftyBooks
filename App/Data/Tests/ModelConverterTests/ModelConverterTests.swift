@@ -13,7 +13,6 @@ private struct User: Equatable {
   public let name: String
 }
 
-@Suite
 struct ModelConverterTests {
   @Test
   func sut_should_convert_to_domain() {

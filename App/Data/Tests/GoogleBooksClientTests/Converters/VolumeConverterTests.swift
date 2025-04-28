@@ -3,7 +3,6 @@ import Testing
 
 @testable import GoogleBooksClient
 
-@Suite
 struct VolumeConverterTests {
   @Test
   func sut_should_convert_domain_model() {
@@ -34,7 +33,8 @@ struct VolumeConverterTests {
       ),
       saleInfo: .init(
         saleability: "FOR_SALE",
-        listPrice: .init(amount: 15.0, currencyCode: "USD")
+        listPrice: .init(amount: 15.0, currencyCode: "USD"),
+        buyLink: "https://buy.me"
       )
     )
 
@@ -44,14 +44,11 @@ struct VolumeConverterTests {
     #expect(domainModel?.title == "Sample Title")
     #expect(domainModel?.authors == ["Author1", "Author2"])
     #expect(domainModel?.description == "A sample description.")
-    #expect(
-      domainModel?.thumbnailImageURLPath == "http://example.com/thumb.jpg"
-    )
+    #expect(domainModel?.thumbnailImageURLPath == "http://example.com/thumb.jpg")
     #expect(domainModel?.isMatureContent == false)
     #expect(domainModel?.publishedYear == "2024")
     #expect(domainModel?.saleability == .forSale)
-    #expect(
-      domainModel?.price == Volume.Price(amount: 15.0, currencyCode: "USD")
-    )
+    #expect(domainModel?.price == Volume.Price(amount: 15.0, currencyCode: "USD"))
+    #expect(domainModel?.buyLink == "https://buy.me")
   }
 }

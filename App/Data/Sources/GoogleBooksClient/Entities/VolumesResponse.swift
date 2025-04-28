@@ -12,7 +12,7 @@ struct VolumeResponse: Equatable, Decodable {
 }
 
 struct VolumeInfoResponse: Equatable, Decodable {
-  let title: String
+  let title: String?
   let authors: [String]?
   let publishedDate: String?
   let description: String?
@@ -27,6 +27,7 @@ struct ImageLinkResponse: Equatable, Decodable {
 struct SaleInfoResponse: Equatable, Decodable {
   let saleability: String?
   let listPrice: ListPriceResponse?
+  let buyLink: String?
 }
 
 struct ListPriceResponse: Equatable, Decodable {

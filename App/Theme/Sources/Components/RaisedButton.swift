@@ -17,10 +17,10 @@ public struct RaisedButton: View {
       action()
     } label: {
       Text(caption)
-        .font(.subheadline)
+        .font(.headline)
         .foregroundStyle(Color.Text.button)
-        .padding(.vertical, .Spacing.XXS)
-        .padding(.horizontal, .Spacing.S)
+        .padding(.vertical, .Spacing.S)
+        .padding(.horizontal, .Spacing.M)
         .background {
           Color.Accent.primary
             .cornerRadius(.CornerRadius.XS)

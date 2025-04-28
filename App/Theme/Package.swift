@@ -16,9 +16,21 @@ let package = Package(
       targets: ["Theme"]
     ),
   ],
+  dependencies: [
+    .package(path: "../Domain")
+  ],
   targets: [
     .target(
-      name: "Theme"
+      name: "Theme",
+      dependencies: [
+        .product(name: "Domain", package: "Domain"),
+      ]
     ),
+    .testTarget(
+      name: "ThemeTests",
+      dependencies: [
+        "Theme"
+      ]
+    )
   ]
 )

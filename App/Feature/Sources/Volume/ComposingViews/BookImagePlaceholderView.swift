@@ -22,3 +22,9 @@ struct BookImagePlaceholderView: View {
       }
   }
 }
+
+#if DEBUG
+#Preview {
+  BookImagePlaceholderView()
+}
+#endif

@@ -1,10 +1,10 @@
 import ComposableArchitecture
 import Domain
+import Shared
 import Testing
 
 @testable import Library
 
-@Suite
 struct LibraryCoreTests {
   @Test
   func sut_should_not_fetch_books_when_search_query_is_empty() async {
@@ -160,36 +160,26 @@ struct LibraryCoreTests {
       state.noItemsFound = true
     }
   }
+
+  @Test
+  func sut_should_navigate_to_volume_detail() async {
+    var state = makeLibraryFeatureState()
+    state.destination = nil
+    state.volumeCards = .init(uniqueElements: [.init(volume: .mock(id: "mockID"))])
+
+    let store = await TestStore(
+      initialState: state,
+      reducer: LibraryFeature.init
+    )
+
+    await store.send(.volumeCard(.element(id: "mockID", action: .delegate(.itemTapped)))) { state in
+      state.destination = .detail(.init(volume: .mock(id: "mockID")))
+    }
+  }
 }
 
 // MARK: - Helpers
 
 private func makeLibraryFeatureState() -> LibraryFeature.State {
   .init()
-}
-
-private extension Volume {
-  static func mock(
-    id: String = "",
-    title: String = "",
-    authors: [String] = [],
-    description: String? = nil,
-    thumbnailImageURLPath: String? = nil,
-    isMatureContent: Bool? = nil,
-    publishedYear: String? = nil,
-    saleability: Volume.Saleability? = nil,
-    price: Volume.Price? = nil
-  ) -> Self {
-    .init(
-      id: id,
-      title: title,
-      authors: authors,
-      description: description,
-      thumbnailImageURLPath: thumbnailImageURLPath,
-      isMatureContent: isMatureContent,
-      publishedYear: publishedYear,
-      saleability: saleability,
-      price: price
-    )
-  }
 }

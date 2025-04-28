@@ -3,7 +3,6 @@ import Testing
 
 @testable import GoogleBooksClient
 
-@Suite
 struct VolumesConverterTests {
   @Test
   func sut_should_convert_to_domain() {
@@ -17,7 +16,8 @@ struct VolumesConverterTests {
           isMatureContent: false,
           publishedYear: "2024",
           saleability: .forSale,
-          price: .init(amount: 15.0, currencyCode: "USD")
+          price: .init(amount: 15.0, currencyCode: "USD"),
+          buyLink: nil
         )
     }
     let volumesConverter = VolumesConverter.live(volumeConverter: volumeConverter)
@@ -37,7 +37,8 @@ struct VolumesConverterTests {
           ),
           saleInfo: .init(
             saleability: "FOR_SALE",
-            listPrice: .init(amount: 15.0, currencyCode: "USD")
+            listPrice: .init(amount: 15.0, currencyCode: "USD"),
+            buyLink: nil
           )
         ),
         count: 3

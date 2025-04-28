@@ -34,30 +34,6 @@
             default = "YES">
          </TestPlanReference>
       </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8FF50FA92DB77DFC007F2C19"
-               BuildableName = "SwiftyBooksTests.xctest"
-               BlueprintName = "SwiftyBooksTests"
-               ReferencedContainer = "container:SwiftyBooks.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8FF50FB32DB77DFC007F2C19"
-               BuildableName = "SwiftyBooksUITests.xctest"
-               BlueprintName = "SwiftyBooksUITests"
-               ReferencedContainer = "container:SwiftyBooks.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

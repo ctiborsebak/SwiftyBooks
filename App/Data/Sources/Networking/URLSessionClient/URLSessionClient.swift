@@ -10,7 +10,7 @@ public struct LiveURLSessionClient: URLSessionClientProtocol {
 
   var session: URLSession
 
-  public init(configuration: URLSessionConfiguration = .default) {
+  private init(configuration: URLSessionConfiguration = .default) {
     self.session = URLSession(configuration: configuration)
   }
 

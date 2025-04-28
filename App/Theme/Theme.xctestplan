@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "189FE498-7935-4659-A748-B743E01F1680",
+      "id" : "63485D62-F8C5-474E-A6B2-8802558E3BB9",
       "name" : "Configuration 1",
       "options" : {
 
@@ -15,8 +15,8 @@
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "ExtensionsTests",
-        "name" : "ExtensionsTests"
+        "identifier" : "ThemeTests",
+        "name" : "ThemeTests"
       }
     }
   ],

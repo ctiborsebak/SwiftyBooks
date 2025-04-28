@@ -1,26 +1,23 @@
 import Domain
 import SwiftUI
-import Theme
 
-extension VolumeCardFeature {
-  struct SaleabilityBadgeView: View {
+public struct SaleabilityBadgeView: View {
 
-    // MARK: - Properties
+  // MARK: - Properties
 
-    let saleability: Volume.Saleability
+  public let saleability: Volume.Saleability
 
-    init (saleability: Volume.Saleability) {
-      self.saleability = saleability
-    }
+  public init (saleability: Volume.Saleability) {
+    self.saleability = saleability
+  }
 
-    // MARK: - Body
+  // MARK: - Body
 
-    var body: some View {
-      BadgeView(
-        caption: saleability.caption,
-        color: saleability.badgeColor
-      )
-    }
+  public var body: some View {
+    BadgeView(
+      caption: saleability.caption,
+      color: saleability.badgeColor
+    )
   }
 }
 

@@ -6,7 +6,6 @@ import Testing
 
 @testable import GoogleBooksClient
 
-@Suite
 struct GoogleBooksClientTests {
   @Test
   func sut_fetches_google_books_volumes() async throws {
@@ -29,7 +28,8 @@ struct GoogleBooksClientTests {
           ),
           saleInfo: .init(
             saleability: "FOR_SALE",
-            listPrice: nil
+            listPrice: nil,
+            buyLink: nil
           )
         )
       ]
@@ -53,7 +53,8 @@ struct GoogleBooksClientTests {
                 isMatureContent: false,
                 publishedYear: "2025",
                 saleability: .forSale,
-                price: nil
+                price: nil,
+                buyLink: nil
               )
             ],
             totalItems: 1

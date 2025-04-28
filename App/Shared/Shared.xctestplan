@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "1643AA91-6AAD-42DC-8703-E9D5EDB77EBF",
+      "id" : "4D8840D6-32DB-4BFE-968D-7DF8F6A71A98",
       "name" : "Configuration 1",
       "options" : {
 
@@ -15,8 +15,8 @@
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "VolumeCardTests",
-        "name" : "VolumeCardTests"
+        "identifier" : "SharedTests",
+        "name" : "SharedTests"
       }
     }
   ],

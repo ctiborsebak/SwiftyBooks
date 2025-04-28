@@ -12,8 +12,8 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "VolumeCard",
-      targets: ["VolumeCard"]
+      name: "Volume",
+      targets: ["Volume"]
     ),
   ],
   dependencies: [
@@ -24,17 +24,17 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "VolumeCard",
+      name: "Volume",
       dependencies: [
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         .product(name: "Domain", package: "Domain"),
-        .product(name: "Extensions", package: "Shared"),
+        .product(name: "Shared", package: "Shared"),
         .product(name: "Theme", package: "Theme"),
       ]
     ),
     .testTarget(
-      name: "VolumeCardTests",
-      dependencies: ["VolumeCard"]
+      name: "VolumeTests",
+      dependencies: ["Volume"]
     ),
   ]
 )
