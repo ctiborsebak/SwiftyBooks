@@ -7,7 +7,7 @@ public extension Volume {
     authors: [String] = [],
     description: String? = nil,
     thumbnailImageURLPath: String? = nil,
-    isMatureContent: Bool? = nil,
+    isMatureContent: Bool = false,
     publishedYear: String? = nil,
     saleability: Volume.Saleability? = nil,
     price: Volume.Price? = nil,

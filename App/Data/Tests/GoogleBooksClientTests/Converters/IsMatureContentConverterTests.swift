@@ -10,6 +10,6 @@ struct IsMatureContentConverterTests {
 
     #expect(sut.convertToDomain(from: "NOT_MATURE") == false)
     #expect(sut.convertToDomain(from: "MATURE") == true)
-    #expect(sut.convertToDomain(from: nil) == true)
+    #expect(sut.convertToDomain(from: nil) == false)
   }
 }

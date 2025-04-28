@@ -6,7 +6,6 @@ import Theme
 extension VolumeDetailFeature {
   @ViewAction(for: VolumeDetailFeature.self)
   public struct MainView: View {
-
     // MARK: - Properties
 
     @Bindable public var store: StoreOf<VolumeDetailFeature>
@@ -48,7 +47,7 @@ extension VolumeDetailFeature {
             if !store.volume.authors.isEmpty {
               TitleAndSubtitleView(
                 title: "Authors",
-                subtitle: store.volume.authors.joined(separator:", ")
+                subtitle: store.volume.authors.joined(separator:", ") // swiftlint:disable:this colon
               )
             }
 
@@ -69,9 +68,7 @@ extension VolumeDetailFeature {
           .padding(.top, .Spacing.M)
 
           HStack(spacing: .Spacing.S) {
-            if let isMatureContent = store.volume.isMatureContent {
-              MatureWarningBadgeView(isMatureContent: isMatureContent)
-            }
+            MatureWarningBadgeView(isMatureContent: store.volume.isMatureContent)
 
             if let saleability = store.volume.saleability {
               SaleabilityBadgeView(saleability: saleability)
@@ -88,10 +85,9 @@ extension VolumeDetailFeature {
           .padding(.top, .Spacing.M)
 
           if store.volume.buyLink != nil {
-            RaisedButton(
-              caption: "Buy now",
-              action: { send(.buyNowTapped) }
-            )
+            RaisedButton(caption: "Buy now") {
+              send(.buyNowTapped)
+            }
             .centerHorizontally()
             .padding(.top, .Spacing.L)
           }
@@ -100,14 +96,13 @@ extension VolumeDetailFeature {
       .padding(.horizontal, .Spacing.S)
       .padding(.vertical, .Spacing.L)
       .background(Color.Background.primary)
-      .backNavigationBar(
-        title: store.volume.title ?? "",
-        backButtonAction: { send(.backButtonTapped) }
-      )
+      .backNavigationBar(title: store.volume.title ?? "") {
+        send(.backButtonTapped)
+      }
       .sheet(
         store: store.scope(state: \.$destination.website, action: \.destination.website),
         content: { store in
-          SafariView(url: store.withState { $0.id} )
+          SafariView(url: store.withState { $0.id })
         }
       )
     }
@@ -144,7 +139,9 @@ private extension VolumeDetailFeature {
           authors: [
             "Ruby Begonia"
           ],
+          // swiftlint:disable:next line_length
           description: "Even if you've never made a flower arrangement before, you can do it beautifully the first time with these simple, professional techniques. A host of fresh, dried, or silk flower designs parade across the pages in lavish photos, and the detailed question and answer format shows how to realize them.",
+          // swiftlint:disable:next line_length
           thumbnailImageURLPath: "https://books.google.com/books/content?id=gzAg7NqVJoAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
           isMatureContent: true,
           publishedYear: "2003",

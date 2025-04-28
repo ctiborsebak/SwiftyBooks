@@ -14,17 +14,17 @@ let package = Package(
     .library(
       name: "Shared",
       targets: ["Shared"]
-    ),
+    )
   ],
   dependencies: [
-    .package(path: "../Domain"),
+    .package(path: "../Domain")
   ],
   targets: [
     .target(
       name: "Shared",
       dependencies: [
-        .product(name: "Domain", package: "Domain"),
-      ],
+        .product(name: "Domain", package: "Domain")
+      ]
     ),
     .testTarget(
       name: "SharedTests",

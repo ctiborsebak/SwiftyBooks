@@ -9,7 +9,7 @@ struct LibraryCoreTests {
   @Test
   func sut_should_not_fetch_books_when_search_query_is_empty() async {
     let state = makeLibraryFeatureState()
-    
+
     let store = await TestStore(
       initialState: state,
       reducer: LibraryFeature.init
@@ -46,8 +46,8 @@ struct LibraryCoreTests {
       initialState: state,
       reducer: LibraryFeature.init
     ) { dependencies in
-      dependencies.googleBooksClient.search = { query, index in
-        return .success(
+      dependencies.googleBooksClient.search = { _, _ in
+        .success(
           .init(
             volumes: [.mock()],
             totalItems: 1
@@ -84,7 +84,7 @@ struct LibraryCoreTests {
       reducer: LibraryFeature.init
     ) { dependencies in
       dependencies.googleBooksClient.search = { _, _ in
-          .failure(.decodingFailed)
+        .failure(.decodingFailed)
       }
       dependencies.continuousClock = clock
     }
@@ -128,7 +128,7 @@ struct LibraryCoreTests {
       reducer: LibraryFeature.init
     ) { dependencies in
       dependencies.googleBooksClient.search = { _, _ in
-          .success(.init(volumes: [], totalItems: 0))
+        .success(.init(volumes: [], totalItems: 0))
       }
     }
 
@@ -148,7 +148,7 @@ struct LibraryCoreTests {
       reducer: LibraryFeature.init
     ) { dependencies in
       dependencies.googleBooksClient.search = { _, _ in
-          .success(.init(volumes: [], totalItems: 0))
+        .success(.init(volumes: [], totalItems: 0))
       }
     }
 

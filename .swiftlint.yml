@@ -1,8 +1,23 @@
 disabled_rules:
-  - contrasted_opening_brace
   - explicit_acl
   - explicit_top_level_acl
   - accessibility_label_for_image
+  - no_extension_access_modifier
+  - file_name
+  - missing_docs
+  - file_types_order
+  - nesting
+  - closure_body_length
+  - attributes
+  - explicit_type_interface
+  - no_grouping_extension
+  - type_contents_order
+  - extension_access_modifier
+  - prefixed_toplevel_constant
+  - accessibility_trait_for_button
+  - trailing_closure
+  - required_deinit
+  - no_magic_numbers
 
 opt_in_rules:
   - all
@@ -13,3 +28,6 @@ indentation_width:
 line_length:
   warning: 140
   ignores_comments: true
+
+excluded:
+  - DerivedData

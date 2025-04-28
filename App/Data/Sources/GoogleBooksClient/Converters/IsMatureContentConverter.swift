@@ -1,15 +1,16 @@
 import ModelConverter
 
-typealias IsMatureContentConverter = ModelConverter<Bool?, String?>
+typealias IsMatureContentConverter = ModelConverter<Bool, String?>
 
 extension IsMatureContentConverter {
   static func live() -> Self {
     .init { response in
       switch response {
-      case "NOT_MATURE":
-        return false
-      default:
+      case "MATURE":
         return true
+
+      default:
+        return false
       }
     }
   }

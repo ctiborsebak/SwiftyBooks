@@ -1,6 +1,8 @@
 import CoreGraphics
 
+// swiftlint:disable identifier_name
 public extension CGFloat {
+  /// Spacing defined in px
   enum Spacing {
     /// Spacing of size 2 px
     public static let XXXS: CGFloat = 2
@@ -22,3 +24,4 @@ public extension CGFloat {
     public static let XXXL: CGFloat = 128
   }
 }
+// swiftlint:enable identifier_name

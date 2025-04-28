@@ -26,7 +26,7 @@ public struct StubRequestBuilderClient: RequestBuilderClientProtocol {
   }
 
   public func withMethod(_ request: URLRequest, _ method: HTTPMethod) -> URLRequest {
-    return urlRequest ?? request
+    urlRequest ?? request
   }
 
   public func withQueryItems(_ request: URLRequest, _ queryItems: [URLQueryItem]) throws -> URLRequest {

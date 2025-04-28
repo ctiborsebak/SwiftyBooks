@@ -4,13 +4,13 @@ import Testing
 @testable import ModelConverter
 
 private struct UserDTO: Equatable {
-  public let userId: String
-  public let username: String
+  let userId: String
+  let username: String
 }
 
 private struct User: Equatable {
-  public let id: String
-  public let name: String
+  let id: String
+  let name: String
 }
 
 struct ModelConverterTests {

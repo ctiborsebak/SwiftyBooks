@@ -2,7 +2,6 @@ import Domain
 import SwiftUI
 
 public struct SaleabilityBadgeView: View {
-
   // MARK: - Properties
 
   public let saleability: Volume.Saleability
@@ -26,12 +25,16 @@ extension Volume.Saleability {
     switch self {
     case .preorder:
       "Pre-order"
+
     case .forSale:
       "For sale"
+
     case .notForSale:
       "Not for sale"
+
     case .free:
       "Free"
+
     case .unknown:
       ""
     }
@@ -40,15 +43,19 @@ extension Volume.Saleability {
   var badgeColor: Color {
     switch self {
     case .preorder:
-        .Semantic.info
+      .Semantic.info
+
     case .forSale:
-        .Semantic.info
+      .Semantic.info
+
     case .free:
-        .Semantic.positive
+      .Semantic.positive
+
     case .notForSale:
-        .Semantic.negative
+      .Semantic.negative
+
     case .unknown:
-        .clear
+      .clear
     }
   }
 }

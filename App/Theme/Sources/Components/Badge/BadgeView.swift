@@ -1,7 +1,6 @@
 import SwiftUI
 
 public struct BadgeView: View {
-
   // MARK: - Properties
 
   let caption: String

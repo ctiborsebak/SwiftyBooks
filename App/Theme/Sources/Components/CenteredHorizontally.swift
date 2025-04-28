@@ -1,13 +1,9 @@
 import SwiftUI
 
 private struct CenteredHorizontallyModifier: ViewModifier {
-  public let alignment: VerticalAlignment
+  let alignment: VerticalAlignment
 
-  public init(alignment: VerticalAlignment) {
-    self.alignment = alignment
-  }
-
-  public func body(content: Content) -> some View {
+  func body(content: Content) -> some View {
     HStack(alignment: alignment) {
       Spacer()
 
