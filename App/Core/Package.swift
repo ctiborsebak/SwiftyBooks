@@ -14,7 +14,7 @@ let package = Package(
     .library(
       name: "Library",
       targets: ["Library"]
-    ),
+    )
   ],
   dependencies: [
     .package(path: "../Data"),
@@ -38,6 +38,6 @@ let package = Package(
     .testTarget(
       name: "LibraryTests",
       dependencies: ["Library"]
-    ),
+    )
   ]
 )

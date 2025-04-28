@@ -2,7 +2,7 @@ import Testing
 
 @testable import Shared
 
-struct String_Tests {
+struct StringTests {
   @Test
   func secure_url_tests() {
     let url = "http://www.google.com"

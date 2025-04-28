@@ -6,7 +6,7 @@ public protocol URLSessionClientProtocol: Sendable {
 }
 
 public struct LiveURLSessionClient: URLSessionClientProtocol {
-  public static let shared = LiveURLSessionClient()
+  public static let shared = Self()
 
   var session: URLSession
 
@@ -20,7 +20,7 @@ public struct LiveURLSessionClient: URLSessionClientProtocol {
     var decodedObject: T
 
     do {
-      decodedObject =  try JSONDecoder().decode(T.self, from: data)
+      decodedObject = try JSONDecoder().decode(T.self, from: data)
     } catch {
       @Dependency(\.loggerClient) var loggerClient
       loggerClient.log("‼️ \(error)")
@@ -30,4 +30,3 @@ public struct LiveURLSessionClient: URLSessionClientProtocol {
     return decodedObject
   }
 }
-

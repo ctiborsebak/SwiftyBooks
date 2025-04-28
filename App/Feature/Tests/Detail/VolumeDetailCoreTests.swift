@@ -14,7 +14,7 @@ struct VolumeDetailCoreTests {
         initialState: state,
         reducer: VolumeDetailFeature.init
       ) { dependencies in
-        dependencies.dismiss = .init{
+        dependencies.dismiss = .init {
           confirmation.confirm()
         }
       }

@@ -24,12 +24,12 @@ public struct LibraryFeature {
   @ObservableState
   public struct State: Equatable {
     @Presents var destination: Destination.State?
-    var searchText: String = ""
+    var searchText = ""
     var shownItemsCount: Int = 0
-    var isShowingError: Bool = false
-    var isActivityIndicatorHidden: Bool = true
-    var isShowingStartMessage: Bool = true
-    var noItemsFound: Bool = false
+    var isShowingError = false
+    var isActivityIndicatorHidden = true
+    var isShowingStartMessage = true
+    var noItemsFound = false
 
     var volumeCards: IdentifiedArrayOf<VolumeCardFeature.State> = []
 
@@ -66,7 +66,7 @@ public struct LibraryFeature {
       switch action {
       case let .view(viewAction):
         return reduce(into: &state, viewAction: viewAction)
-        
+
       case let .debouncedTextChanged(searchQuery):
         return fetchBooks(searchQuery: searchQuery, state: &state)
 
@@ -98,7 +98,7 @@ public struct LibraryFeature {
         return .none
 
       case let .volumeCard(.element(id, .delegate(.itemTapped))):
-        guard let volume = state.volumeCards.first(where: { $0.id == id } )?.volume else {
+        guard let volume = state.volumeCards.first(where: { $0.id == id })?.volume else {
           return .none
         }
 
@@ -107,7 +107,7 @@ public struct LibraryFeature {
         return .none
 
       case .volumeCard,
-          .destination:
+        .destination:
         return .none
       }
     }
@@ -125,7 +125,7 @@ private extension LibraryFeature {
       guard searchQuery != state.searchText else {
         return .none
       }
-      
+
       resetForNewSearch(state: &state)
       state.searchText = searchQuery
 
@@ -154,7 +154,7 @@ private extension LibraryFeature {
   }
 
   func fetchBooks(searchQuery: String, state: inout State) -> EffectOf<Self> {
-    return .run(priority: .background) { [currentIndex = state.shownItemsCount] send in
+    .run(priority: .background) { [currentIndex = state.shownItemsCount] send in
       @Dependency(\.googleBooksClient) var googleBooksClient
 
       let lastItemIndex = currentIndex > 0 ? currentIndex - 1 : 0

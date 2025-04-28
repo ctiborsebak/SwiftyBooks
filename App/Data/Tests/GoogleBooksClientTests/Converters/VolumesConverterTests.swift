@@ -7,18 +7,18 @@ struct VolumesConverterTests {
   @Test
   func sut_should_convert_to_domain() {
     let volumeConverter = VolumeConverter { _ in
-        .init(
-          id: "volume1",
-          title: "Sample Title",
-          authors: ["Author1, Author2"],
-          description: "A sample description",
-          thumbnailImageURLPath: "http://example.com/thumb.jpg",
-          isMatureContent: false,
-          publishedYear: "2024",
-          saleability: .forSale,
-          price: .init(amount: 15.0, currencyCode: "USD"),
-          buyLink: nil
-        )
+      .init(
+        id: "volume1",
+        title: "Sample Title",
+        authors: ["Author1, Author2"],
+        description: "A sample description",
+        thumbnailImageURLPath: "http://example.com/thumb.jpg",
+        isMatureContent: false,
+        publishedYear: "2024",
+        saleability: .forSale,
+        price: .init(amount: 15.0, currencyCode: "USD"),
+        buyLink: nil
+      )
     }
     let volumesConverter = VolumesConverter.live(volumeConverter: volumeConverter)
 

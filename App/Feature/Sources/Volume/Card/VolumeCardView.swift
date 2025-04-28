@@ -7,7 +7,6 @@ import Theme
 public extension VolumeCardFeature {
   @ViewAction(for: VolumeCardFeature.self)
   struct MainView: View {
-
     // MARK: - Properties
 
     @Bindable public var store: StoreOf<VolumeCardFeature>
@@ -24,7 +23,7 @@ public extension VolumeCardFeature {
       } label: {
         VStack(alignment: .leading, spacing: .Spacing.XS) {
           HStack(alignment: .top) {
-            Text(store.volume.authors.joined(separator:", "))
+            Text(store.volume.authors.joined(separator:", ")) // swiftlint:disable:this colon
               .lineLimit(1)
               .font(.system(.caption))
               .foregroundStyle(Color.Text.primary)
@@ -79,9 +78,7 @@ public extension VolumeCardFeature {
                   )
                 }
 
-                if let isMatureContent = store.volume.isMatureContent {
-                  MatureWarningBadgeView(isMatureContent: isMatureContent)
-                }
+                MatureWarningBadgeView(isMatureContent: store.volume.isMatureContent)
 
                 if let saleability = store.volume.saleability {
                   SaleabilityBadgeView(saleability: saleability)
@@ -115,8 +112,10 @@ public extension VolumeCardFeature {
           authors: [
             "Ruby Begonia"
           ],
+          // swiftlint:disable line_length
           description: "Even if you've never made a flower arrangement before, you can do it beautifully the first time with these simple, professional techniques. A host of fresh, dried, or silk flower designs parade across the pages in lavish photos, and the detailed question and answer format shows how to realize them.",
           thumbnailImageURLPath: "https://books.google.com/books/content?id=gzAg7NqVJoAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+          // swiftlint:enable line_length
           isMatureContent: true,
           publishedYear: "2003",
           saleability: .preorder,
@@ -141,7 +140,7 @@ public extension VolumeCardFeature {
           ],
           description: nil,
           thumbnailImageURLPath: nil,
-          isMatureContent: nil,
+          isMatureContent: false,
           publishedYear: nil,
           saleability: nil,
           price: nil,

@@ -4,7 +4,7 @@ public struct Volume: Equatable, Identifiable, Sendable {
   public let authors: [String]
   public let description: String?
   public let thumbnailImageURLPath: String?
-  public let isMatureContent: Bool?
+  public let isMatureContent: Bool
   public let publishedYear: String?
   public let saleability: Saleability?
   public let price: Price?
@@ -16,7 +16,7 @@ public struct Volume: Equatable, Identifiable, Sendable {
     authors: [String],
     description: String?,
     thumbnailImageURLPath: String?,
-    isMatureContent: Bool?,
+    isMatureContent: Bool,
     publishedYear: String?,
     saleability: Saleability?,
     price: Price?,

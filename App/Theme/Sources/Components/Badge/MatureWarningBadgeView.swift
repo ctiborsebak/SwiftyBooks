@@ -1,7 +1,6 @@
 import SwiftUI
 
 public struct MatureWarningBadgeView: View {
-
   // MARK: - Properties
 
   public let isMatureContent: Bool
@@ -19,6 +18,7 @@ public struct MatureWarningBadgeView: View {
         caption: "18+",
         color: Color.Semantic.negative
       )
+
     case false:
       EmptyView()
     }

@@ -14,7 +14,7 @@ let package = Package(
     .library(
       name: "Volume",
       targets: ["Volume"]
-    ),
+    )
   ],
   dependencies: [
     .package(path: "../Domain"),
@@ -29,12 +29,12 @@ let package = Package(
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         .product(name: "Domain", package: "Domain"),
         .product(name: "Shared", package: "Shared"),
-        .product(name: "Theme", package: "Theme"),
+        .product(name: "Theme", package: "Theme")
       ]
     ),
     .testTarget(
       name: "VolumeTests",
       dependencies: ["Volume"]
-    ),
+    )
   ]
 )

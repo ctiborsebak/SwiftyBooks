@@ -10,10 +10,10 @@ struct VolumeConverterTests {
       false
     }
     let saleabilityConverter = SaleabilityConverter { _ in
-        .forSale
+      .forSale
     }
     let priceConverter = PriceConverter { _ in
-        .init(amount: 15.0, currencyCode: "USD")
+      .init(amount: 15.0, currencyCode: "USD")
     }
     let sut = VolumeConverter.live(
       isMatureContentConverter: isMatureContentConverter,

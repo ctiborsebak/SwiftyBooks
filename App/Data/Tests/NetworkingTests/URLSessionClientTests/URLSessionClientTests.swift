@@ -7,7 +7,7 @@ struct URLSessionClientTests {
   @Test
   func testFetchUserSuccessfully() async throws {
     let mockClient = MockURLSessionClient()
-    let url = URL(string: "https://api.example.com/users/1")!
+    let url = try #require(URL(string: "https://api.example.com/users/1"))
     let mockUser = User(id: 1, name: "John Doe")
 
     try await mockClient.register(url: url, value: mockUser)
@@ -23,10 +23,10 @@ struct URLSessionClientTests {
   }
 
   @Test
-  func testFetchUserWithError() async {
+  func testFetchUserWithError() async throws {
     var erroredOut = false
     let mockClient = MockURLSessionClient()
-    let url = URL(string: "https://api.example.com/users/1")!
+    let url = try #require(URL(string: "https://api.example.com/users/1"))
     let mockUser = User(id: 1, name: "John Doe")
 
     struct NetworkError: Error {}
@@ -51,7 +51,7 @@ struct URLSessionClientTests {
 
 // MARK: - Helpers
 
-public struct MockResponse : Sendable{
+public struct MockResponse: Sendable {
   let data: Data
   let statusCode: Int
   let error: Error?
@@ -78,7 +78,7 @@ private actor MockStorage {
   }
 
   func getResponse(for url: URL) -> MockResponse? {
-    return mockResponses[url]
+    mockResponses[url]
   }
 
   func addExecutedRequest(_ request: URLRequest) {
@@ -86,7 +86,7 @@ private actor MockStorage {
   }
 
   func getExecutedRequests() -> [URLRequest] {
-    return executedRequests
+    executedRequests
   }
 }
 
@@ -106,26 +106,33 @@ public final class MockURLSessionClient: URLSessionClientProtocol {
   }
 
   public func executedRequests() async -> [URLRequest] {
-    return await storage.getExecutedRequests()
+    await storage.getExecutedRequests()
   }
 
   public func execute<T: Decodable>(_ request: URLRequest, as type: T.Type) async throws -> T {
     await storage.addExecutedRequest(request)
 
     guard let url = request.url else {
-      throw NSError(domain: "MockURLSessionClient", code: 1, userInfo: [NSLocalizedDescriptionKey: "Request URL is nil"])
+      throw NSError(
+        domain: "MockURLSessionClient",
+        code: 1,
+        userInfo: [NSLocalizedDescriptionKey: "Request URL is nil"]
+      )
     }
 
     guard let mockResponse = await storage.getResponse(for: url) else {
-      throw NSError(domain: "MockURLSessionClient", code: 2, userInfo: [NSLocalizedDescriptionKey: "No mock response registered for URL: \(url)"])
+      throw NSError(
+        domain: "MockURLSessionClient",
+        code: 2,
+        userInfo: [NSLocalizedDescriptionKey: "No mock response registered for URL: \(url)"]
+      )
     }
 
     if let error = mockResponse.error {
       throw error
     }
 
-    let decodedObject = try JSONDecoder().decode(T.self, from: mockResponse.data)
-    return decodedObject
+    return try JSONDecoder().decode(T.self, from: mockResponse.data)
   }
 }
 

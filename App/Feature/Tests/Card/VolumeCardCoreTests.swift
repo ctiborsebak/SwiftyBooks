@@ -3,7 +3,6 @@ import Testing
 
 @testable import Volume
 
-
 struct VolumeCardCoreTests {
   @Test
   func sut_should_send_delegate_action_when_item_tapped() async {

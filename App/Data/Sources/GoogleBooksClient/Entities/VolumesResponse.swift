@@ -13,7 +13,7 @@ struct VolumeResponse: Equatable, Decodable {
 
 struct VolumeInfoResponse: Equatable, Decodable {
   let title: String?
-  let authors: [String]?
+  let authors: [String]? // swiftlint:disable:this discouraged_optional_collection
   let publishedDate: String?
   let description: String?
   let imageLinks: ImageLinkResponse?

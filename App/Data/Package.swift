@@ -41,7 +41,7 @@ let package = Package(
     .target(
       name: "Networking",
       dependencies: [
-        .product(name: "Dependencies", package: "swift-dependencies"),
+        .product(name: "Dependencies", package: "swift-dependencies")
       ]
     ),
     .testTarget(
@@ -53,7 +53,7 @@ let package = Package(
       dependencies: [
         "ModelConverter",
         "Networking",
-        .product(name: "Domain", package: "Domain"),
+        .product(name: "Domain", package: "Domain")
       ]
     ),
     .testTarget(

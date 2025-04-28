@@ -13,10 +13,10 @@ public struct ModelConverter<DomainModel: Equatable & Sendable, ExternalModel: E
   }
 
   public func convertToDomain(from externalModel: ExternalModel) -> DomainModel? {
-    return toDomain?(externalModel)
+    toDomain?(externalModel)
   }
 
   public func convertToExternal(from domainModel: DomainModel) -> ExternalModel? {
-    return toExternal?(domainModel)
+    toExternal?(domainModel)
   }
 }

@@ -1,5 +1,5 @@
-import Foundation
 import Dependencies
+import Foundation
 
 struct LoggerClient: Sendable {
   var log: @Sendable (_ message: String) -> Void
